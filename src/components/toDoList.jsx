@@ -1,8 +1,28 @@
-import React, { useState } from "react";
-
+import React, { useState,useEffect } from "react";
+import supabase from "../config/supabaseClient";
 export default function Todolist() {
   const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
+
+
+  // const [fetchError, setFetchError] = useState(null);
+
+  // useEffect(() => {
+  //   const fetchQuotes = async () => {
+  //     const { data, error } = await supabase.from("learningTable").select();
+
+  //     if (error) {
+  //       setFetchError("Could not fetch tasks");
+  //       setTasks(null);
+  //     } else {
+  //       setTasks(data);
+  //       setFetchError(null);
+  //     }
+  //   };
+
+  //   fetchQuotes();
+  // }, []);
+
 
   function handleInputChange(event) {
     const value = event.target.value;
