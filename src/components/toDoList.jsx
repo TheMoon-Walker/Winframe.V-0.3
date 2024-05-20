@@ -23,10 +23,21 @@ export default  function Todolist() {
   function handleDelete(index) {
     setTasks((prevTasks) => prevTasks.filter((_t, tIndex) => tIndex !== index));
   }
-
-  function handleDone() {
+  async function handleDone(taskId) {
     alert(`Congratulations! You've completed 1 task out of ${tasks.length}.`);
+
+    const { data, error } = await supabase
+      .from('toDoList')
+      .update({ is_Done: false }) 
+      .eq('id', taskId); 
+      //i think the problem is rls configuration
+    if (error) {
+      console.error('Erreur lors de la mise à jour de la tâche :', error.message);
+    } else {
+      console.log('Tâche mise à jour avec succès !');
+    }
   }
+
 
   return (
     <div className="h-full flex flex-col ">
