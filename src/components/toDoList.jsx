@@ -1,23 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import supabase from "../config/supabaseClient";
-export default async function Todolist() {
+export default  function Todolist() {
   const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
   const [formError, setFormError] = useState("");
 
-
-  
-
-  
   async function handleInputChange(event) {
     const value = event.target.value;
     setTask(value);
-    
-
   }
-  const {data , error} = await supabase
-  .from('toDoList')
-  .insert([task])
+  // const {data , error} = await supabase
+  // .from('toDoList')
+  // .insert([task])
   function handleButtonClick() {
     if (task) {
       setTasks((prevTasks) => [...prevTasks, task]);
@@ -26,14 +20,13 @@ export default async function Todolist() {
       alert("Please enter a task!");
     }
   }
-  if (error){
-    console.log(error)
-
-  }
-  if (data){
-    console.log(data);
-    setFormError(null)
-  }
+  // if (error) {
+  //   console.log(error);
+  // }
+  // if (data) {
+  //   console.log(data);
+  //   setFormError(null);
+  // }
 
   function handleDelete(index) {
     setTasks((prevTasks) => prevTasks.filter((_t, tIndex) => tIndex !== index));
