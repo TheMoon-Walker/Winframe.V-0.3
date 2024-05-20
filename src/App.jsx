@@ -1,7 +1,6 @@
 import React from "react";
 import supabase from "./config/supabaseClient";
 import Quote from "./components/quote";
-import Create from "./components/create";
 import Todolist from "./components/toDoList";
 function App() {
   return (
@@ -15,7 +14,7 @@ function App() {
           <Todolist />
         </div>
         <div>
-        {/* <div> <Create/></div> */}
+  
           <div></div>
           <div></div>
         </div>
