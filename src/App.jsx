@@ -15,7 +15,7 @@ function App() {
           <Todolist />
         </div>
         <div>
-          <div> <Create/></div>
+        {/* <div> <Create/></div> */}
           <div></div>
           <div></div>
         </div>

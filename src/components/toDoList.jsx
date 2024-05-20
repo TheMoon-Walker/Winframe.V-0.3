@@ -1,34 +1,23 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import supabase from "../config/supabaseClient";
-export default function Todolist() {
+export default async function Todolist() {
   const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
+  const [formError, setFormError] = useState("");
 
 
-  // const [fetchError, setFetchError] = useState(null);
+  
 
-  // useEffect(() => {
-  //   const fetchQuotes = async () => {
-  //     const { data, error } = await supabase.from("learningTable").select();
-
-  //     if (error) {
-  //       setFetchError("Could not fetch tasks");
-  //       setTasks(null);
-  //     } else {
-  //       setTasks(data);
-  //       setFetchError(null);
-  //     }
-  //   };
-
-  //   fetchQuotes();
-  // }, []);
-
-
-  function handleInputChange(event) {
+  
+  async function handleInputChange(event) {
     const value = event.target.value;
     setTask(value);
-  }
+    
 
+  }
+  const {data , error} = await supabase
+  .from('toDoList')
+  .insert([task])
   function handleButtonClick() {
     if (task) {
       setTasks((prevTasks) => [...prevTasks, task]);
@@ -37,24 +26,30 @@ export default function Todolist() {
       alert("Please enter a task!");
     }
   }
+  if (error){
+    console.log(error)
+
+  }
+  if (data){
+    console.log(data);
+    setFormError(null)
+  }
 
   function handleDelete(index) {
     setTasks((prevTasks) => prevTasks.filter((_t, tIndex) => tIndex !== index));
   }
 
   function handleDone() {
-   
     alert(`Congratulations! You've completed 1 task out of ${tasks.length}.`);
   }
 
   return (
-    
     <div className="h-full flex flex-col ">
-      <div className="bg-gradient-to-r  from-slate-800 to-slate-400 "> 
-      <div className="text-lg mt-5 mb-6 text-slate-200 font-bold    p-2 flex justify-center items-center ">
-        Todolist
+      <div className="bg-gradient-to-r  from-slate-800 to-slate-400 ">
+        <div className="text-lg mt-5 mb-6 text-slate-200 font-bold    p-2 flex justify-center items-center ">
+          Todolist
+        </div>
       </div>
-</div>
       <div className="flex  items-center justify-center h-14 pt bg-slate-400 ">
         <form
           className="p-5 m-6  w-full  border-slate-900 rounded-2xl"
@@ -88,7 +83,9 @@ export default function Todolist() {
             key={index}
             className="flex items-center justify-between mb-3 mt-3 p-3 h-12 rounded-lg border border-slate-300 hover:bg-slate-600 shadow-xl "
           >
-            <span className="text-base text-slate-200 overflow-y-auto pl-8 font-medium">{task}</span>
+            <span className="text-base text-slate-200 overflow-y-auto pl-8 font-medium">
+              {task}
+            </span>
             <div className="flex gap-2">
               <button
                 onClick={handleDone}
