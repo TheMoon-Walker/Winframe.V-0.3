@@ -42,7 +42,7 @@ export default  function Todolist() {
 
 
   return (
-    <div className=" flex  flex-col ">
+    <div className=" flex   flex-col ">
       <div className="bg-gradient-to-r  from-slate-800 to-slate-400 ">
 
         <div className="text-lg mt-5 mb-6 text-slate-200 font-bold    p-2 flex justify-center items-center ">
@@ -76,7 +76,7 @@ export default  function Todolist() {
           </div>
         </form>
       </div>
-      <ul className="flex flex-col p-2 pb-14 w-full h-3/4 overflow-y-auto flex-grow">
+      <ul className="flex flex-col p-2 pb-14  h-64 overflow-auto ">
         {tasks.map((task, index) => (
           <li
             key={index}
