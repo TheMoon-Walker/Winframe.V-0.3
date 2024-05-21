@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import { useState } from "react";
 import supabase from "../config/supabaseClient";
 export default  function Todolist() {
   const [task, setTask] = useState("");
@@ -14,6 +14,7 @@ export default  function Todolist() {
     if (task) {
       setTasks((prevTasks) => [...prevTasks, task]);
       setTask("");
+      // eslint-disable-next-line no-unused-vars
       const {data , error} = await supabase.from('toDoList').insert([{task}])
     } else {
       alert("Please enter a task!");
@@ -26,6 +27,7 @@ export default  function Todolist() {
   async function handleDone(taskId) {
     alert(`Congratulations! You've completed 1 task out of ${tasks.length}.`);
 
+    // eslint-disable-next-line no-unused-vars
     const { data, error } = await supabase
       .from('toDoList')
       .update({ is_Done: false }) 
@@ -40,8 +42,9 @@ export default  function Todolist() {
 
 
   return (
-    <div className="h-full flex flex-col ">
+    <div className=" flex  flex-col ">
       <div className="bg-gradient-to-r  from-slate-800 to-slate-400 ">
+
         <div className="text-lg mt-5 mb-6 text-slate-200 font-bold    p-2 flex justify-center items-center ">
           Todolist
         </div>
