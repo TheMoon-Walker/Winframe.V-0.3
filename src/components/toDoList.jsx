@@ -76,7 +76,7 @@ export default  function Todolist() {
           </div>
         </form>
       </div>
-      <ul className="flex flex-col p-2 pb-14  h-64 overflow-auto ">
+      <ul className="flex flex-col p-2 pb-1 h-72 overflow-auto ">
         {tasks.map((task, index) => (
           <li
             key={index}

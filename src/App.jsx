@@ -1,11 +1,11 @@
 import Quote from "./components/quote";
 import Todolist from "./components/toDoList";
+// import Dashbord from "./components/dashbord";
 function App() {
   return (
     <>
       <div className="flex h-full bg-slate-300 flex-row">
         <div className="  bg-slate-400  h-full  m-4  shadow-2xl  w-40">
-
         <ul className="space-y-16">
             <li>
               <a href="#" className="block p-2 bg-blue-900 rounded hover:bg-red-200">
