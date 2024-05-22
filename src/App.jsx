@@ -5,10 +5,10 @@ import Todolist from "./components/toDoList";
 function App() {
   return (
     <>
-      <div className="flex h-full bg-slate-300 flex-row">
+      <div className="flex h-full  bg-zinc-300 flex-row">
         <Dashbord />
         <div className=" bg-slate-400 flex flex-col w-full  h-full">
-          <div className=" bg-orange-300 lg:h-32 h-40">
+          <div className=" bg-orange-300 lg:h-32  h-40">
             <Quote />
           </div>
 

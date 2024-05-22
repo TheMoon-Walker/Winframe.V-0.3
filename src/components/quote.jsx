@@ -10,8 +10,8 @@ function Quote() {
       try {
         const response = await fetch("./learning.json");
         const json = await response.json();
-        // const rnd = Math.floor(Math.random() * json.length);
-        const rnd = 9
+        const rnd = Math.floor(Math.random() * json.length);
+        // const rnd = 9
         setQuote(json[rnd].quote);
         setAutor(json[rnd].author);
        
