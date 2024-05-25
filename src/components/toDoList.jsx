@@ -1,11 +1,10 @@
 import { useState } from "react";
 import supabase from "../config/supabaseClient";
-export default  function Todolist() {
+export default function Todolist() {
   const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
 
-
-   function handleInputChange(event) {
+  function handleInputChange(event) {
     const value = event.target.value;
     setTask(value);
   }
@@ -15,41 +14,63 @@ export default  function Todolist() {
       setTasks((prevTasks) => [...prevTasks, task]);
       setTask("");
       // eslint-disable-next-line no-unused-vars
-      const {data , error} = await supabase.from('toDoList').insert([{task}])
+      const { data, error } = await supabase
+        .from("toDoList")
+        .insert([{ task }]);
     } else {
       alert("Please enter a task!");
     }
   }
- async function logdata(){
-    const {data} = await supabase.from('toDoList').select()
-    console.log('les donnes :',data)
- }  
- logdata()
+  async function logdata() {
+    const { data } = await supabase.from("toDoList").select();
+    console.log("les donnes :", data);
+  }
+  logdata();
 
   function handleDelete(index) {
     setTasks((prevTasks) => prevTasks.filter((_t, tIndex) => tIndex !== index));
   }
-  async function handleDone(taskId) {
-    alert(`Congratulations! You've completed 1 task out of ${tasks.length}.`);
 
-    // eslint-disable-next-line no-unused-vars
-    const { data, error } = await supabase
-      .from('toDoList')
-      .update({ is_Done: false }) 
-      .eq('id', taskId); 
-      //i think the problem is rls configuration
+  // async function handleDone(taskId) {
+  //   alert(`Congratulations! You've completed 1 task out of ${tasks.length}.`);
+  //   // eslint-disable-next-line no-unused-vars
+  //   const { data, error } = await supabase
+  //     .from("toDoList")
+  //     .update({ is_Done: true })
+  //     .eq("id", taskId);
+  //   if (error) {
+  //     console.error(
+  //       "Erreur lors de la mise à jour de la tâche :",
+  //       error.message
+  //     );
+  //   } else {
+  //     console.log("Tâche mise à jour avec succès !");
+  //   }
+  // }
+  async function handleDone(taskId) {
+    const { error } = await supabase
+      .from("toDoList")
+      .update({ is_Done: true })
+      .eq("id", taskId);
+
     if (error) {
-      console.error('Erreur lors de la mise à jour de la tâche :', error.message);
+      console.error(
+        "Erreur lors de la mise à jour de la tâche : ",error,
+        // error.message
+      );
     } else {
-      console.log('Tâche mise à jour avec succès !');
+      setTasks((prevTasks) =>
+        prevTasks.map((task) =>
+          task.id === taskId ? { ...task, is_Done: true } : task
+        )
+      );
+      alert(`Congratulations! You've completed 1 task out of ${tasks.length}.`);
     }
   }
-
 
   return (
     <div className=" flex   flex-col ">
       <div className="bg-gradient-to-r  from-slate-800 to-slate-400 ">
-
         <div className="text-lg mt-5 mb-6 text-slate-200 font-bold    p-2 flex justify-center items-center ">
           Todolist
         </div>

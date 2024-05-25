@@ -1,6 +1,6 @@
 function Dashbord() {
   return (
-    <div className="    pt-10 h-full  m-4      shadow-2xl  w-40">
+    <div className="    pt-10 h-full  m-4   pr-10    shadow-2xl  w-40">
       <ul className="space-y-16 h-10 w-6">
         <li>
           <a
