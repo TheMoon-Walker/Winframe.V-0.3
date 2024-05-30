@@ -21,6 +21,7 @@ export default function Todolist() {
       alert("Please enter a task!");
     }
   }
+  
   async function logdata() {
     const { data } = await supabase.from("toDoList").select();
     console.log("les donnes :", data);
@@ -31,22 +32,7 @@ export default function Todolist() {
     setTasks((prevTasks) => prevTasks.filter((_t, tIndex) => tIndex !== index));
   }
 
-  // async function handleDone(taskId) {
-  //   alert(`Congratulations! You've completed 1 task out of ${tasks.length}.`);
-  //   // eslint-disable-next-line no-unused-vars
-  //   const { data, error } = await supabase
-  //     .from("toDoList")
-  //     .update({ is_Done: true })
-  //     .eq("id", taskId);
-  //   if (error) {
-  //     console.error(
-  //       "Erreur lors de la mise à jour de la tâche :",
-  //       error.message
-  //     );
-  //   } else {
-  //     console.log("Tâche mise à jour avec succès !");
-  //   }
-  // }
+
   async function handleDone(taskId) {
     const { error } = await supabase
       .from("toDoList")
