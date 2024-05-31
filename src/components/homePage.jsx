@@ -1,4 +1,4 @@
-import Dashbord from './drawer';
+import Drawer from './drawer';
 import Todolist from './toDoList';
 import Quote from './quote';
 import Footer from './footer';
@@ -8,7 +8,7 @@ function HomePage() {
     <div className="flex flex-col min-h-screen bg-zinc-300">
       <div className="flex flex-row flex-1">
         <div className="hidden md:block lg:block">
-          <Dashbord />
+      <Drawer />
         </div>
 
         <div className="flex flex-col flex-1 bg-slate-400">

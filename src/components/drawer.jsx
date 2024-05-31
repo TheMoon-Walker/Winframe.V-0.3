@@ -1,42 +1,42 @@
-function Dashbord() {
-  return (
-    <div className="    pt-10 h-full  m-4   pr-10    shadow-2xl  w-40">
-      <ul className="space-y-16 h-10 w-6">
-        <li>
-          <a
-            href="#"
-            className="block p-2  bg-sky-600  w-36  rounded text-center hover:bg-sky-700"
-          >
-            something
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            className="block p-2 w-36 bg-cyan-800 rounded text-center hover:bg-cyan-900"
-          >
-            something
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            className="block p-2 w-36 bg-rose-800 rounded text-center hover:bg-rose-950"
-          >
-            something
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            className="block p-2  w-36 bg-blue-100 rounded  text-center hover:bg-blue-200"
-          >
-            something
-          </a>
-        </li>
-      </ul>
-    </div>
-  );
-}
-
-export default Dashbord;
+function Drawer() {
+    return (
+      <div className="bg-gray-800 h-full p-6 shadow-xl w-64 rounded-lg m-4">
+        <h2 className="text-xl font-bold mb-6 text-white">Drawer</h2>
+        <ul className="space-y-4">
+          <li>
+            <a
+              href="#"
+              className="block p-3 bg-sky-600 text-white rounded-lg text-center font-semibold hover:bg-sky-700 transition duration-300"
+            >
+              Option 1
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              className="block p-3 bg-cyan-600 text-white rounded-lg text-center font-semibold hover:bg-cyan-700 transition duration-300"
+            >
+              Option 2
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              className="block p-3 bg-rose-600 text-white rounded-lg text-center font-semibold hover:bg-rose-700 transition duration-300"
+            >
+              Option 3
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              className="block p-3 bg-blue-600 text-white rounded-lg text-center font-semibold hover:bg-blue-700 transition duration-300"
+            >
+              Option 4
+            </a>
+          </li>
+        </ul>
+      </div>
+    );
+  }
+export default Drawer;
