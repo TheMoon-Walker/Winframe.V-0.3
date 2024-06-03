@@ -1,6 +1,6 @@
 function Drawer() {
     return (
-      <div className="bg-gray-800 h-full p-6 shadow-xl w-64 rounded-lg m-4">
+      <div className="bg-slate-800 h-full  p-6 shadow-xl w-64 rounded-lg m-4">
         <h2 className="text-xl font-bold mb-6 text-white">Drawer</h2>
         <ul className="space-y-4">
           <li>
