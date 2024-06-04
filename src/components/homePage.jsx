@@ -3,12 +3,7 @@ import Drawer from "./drawer";
 import Footer from "./footer";
 import Todolist_And_Quote from "./todolist_And_Quote";
 
-// const [xComponent,setXComponent] = useState()
-// function handleClick(){
 
-//   return 
-
-// }
 function HomePage() {
   return (
     
@@ -21,9 +16,7 @@ function HomePage() {
       <Todolist_And_Quote/>
       </div>
 
-      <footer className="bg-gray-800 text-white text-center py-4 w-full">
         <Footer />
-      </footer>
     </div>
   );
 }
