@@ -3,7 +3,7 @@ import supabase from "../config/supabaseClient";
 export default function Todolist() {
   const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
-
+  const [is_Done, setIs_Done] = useState(false);
   function handleInputChange(event) {
     const value = event.target.value;
     setTask(value);
@@ -21,37 +21,31 @@ export default function Todolist() {
       alert("Please enter a task!");
     }
   }
-  
-  async function logdata() {
-    const { data } = await supabase.from("toDoList").select();
-    console.log("les donnes :", data);
-  }
-  logdata();
 
   function handleDelete(index) {
     setTasks((prevTasks) => prevTasks.filter((_t, tIndex) => tIndex !== index));
   }
 
-
   async function handleDone(taskId) {
-    const { error } = await supabase
-      .from("toDoList")
-      .update({ is_Done: true })
-      .eq("id", taskId);
+    setIs_Done(true);
+    console(is_Done)
+    // ici je veux pouvoir creer un nouveau style pour le
+    // composant task lorsque le HandleDone est declenche mais
+    // je ne sais pas je dois extraire a nouveau cet task en utilisant
+    //  l'id pour lui supprimer l'ancien et faire croire a une transition
+    //  ou quoi ??
 
-    if (error) {
-      console.error(
-        "Erreur lors de la mise à jour de la tâche : ",error,
-        // error.message
-      );
-    } else {
-      setTasks((prevTasks) =>
-        prevTasks.map((task) =>
-          task.id === taskId ? { ...task, is_Done: true } : task
-        )
-      );
-      alert(`Congratulations! You've completed 1 task out of ${tasks.length}.`);
-    }
+    // const { error } = await supabase
+    //   .from("toDoList")
+    //   .update({ is_Done: true })
+    //   .eq("id", taskId);
+    // } else {
+    //   setTasks((prevTasks) =>
+    //     prevTasks.map((task) =>
+    //       task.id === taskId ? { ...task, is_Done: true } : task
+    //     )
+    //   );
+    // alert(`Congratulations! You've completed 1 task out of ${tasks.length}.`);
   }
 
   return (
@@ -90,10 +84,16 @@ export default function Todolist() {
       </div>
       <ul className="flex flex-col p-2 pb-1 h-72 overflow-auto ">
         {tasks.map((task, index) => (
-          <li
-            key={index}
-            className="flex items-center justify-between mb-3 mt-3 p-3 h-12 rounded-lg border m-10 border-slate-300 hover:bg-slate-600 shadow-xl "
-          >
+          // <li
+          //   key={index}
+          //   className="flex items-center justify-between mb-3 mt-3 p-3 h-12 rounded-lg border m-10 border-slate-300 hover:bg-slate-600 shadow-xl "
+          // >
+        <li
+         key={index}
+           className={`flex items-center justify-between mb-3 mt-3 p-3 h-12 rounded-lg border m-10 border-slate-300 hover:bg-slate-600 shadow-xl ${
+             is_Done ? "bg-slate-200 text-slate-700" : "" // Apply styles for completed tasks
+             }`}
+           >
             <span className="text-base text-slate-200 overflow-y-auto pl-8 font-medium">
               {task}
             </span>
