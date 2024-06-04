@@ -9,9 +9,8 @@ function HomePage() {
     
     <div className="flex flex-col min-h-screen bg-zinc-300">
       <div className="flex flex-row flex-1">
-        <div className="hidden md:block lg:block">
           <Drawer />
-        </div>
+
 
       <Todolist_And_Quote/>
       </div>
