@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom";
+
 
 function Drawer() {
-  const handleClick = (option) => {
-    console.log(`Option ${option} clicked`);
-    // Ajoutez ici le code que vous souhaitez exécuter lors du clic
+const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/vitrine')
   };
 
   return (
