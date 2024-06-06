@@ -26,14 +26,15 @@ export default function Todolist() {
     setTasks((prevTasks) => prevTasks.filter((_t, tIndex) => tIndex !== index));
   }
 
+  // eslint-disable-next-line no-unused-vars
   async function handleDone(taskId) {
+  //je pense que le probleme vient du fait que qu'il y'ai un seul etat is_Done pour tout les task ?!
+  //je veux pouvoir utlisiser le taskId si necessaire pur identifier le task avec is_done = true 
+  //le probleme c'est que si j'appuie le bouton done et que is_Done devient true il l'est pour tout les task de la list tasks
+  //propose moi de solution a explorer pour pouvoir regler ce probleme , ne genere pas de code , je ferai moi meme 
     setIs_Done(true);
     console(is_Done)
-    // ici je veux pouvoir creer un nouveau style pour le
-    // composant task lorsque le HandleDone est declenche mais
-    // je ne sais pas je dois extraire a nouveau cet task en utilisant
-    //  l'id pour lui supprimer l'ancien et faire croire a une transition
-    //  ou quoi ??
+  
 
     // const { error } = await supabase
     //   .from("toDoList")
