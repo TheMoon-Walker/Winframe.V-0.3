@@ -3,6 +3,7 @@ import supabase from "../config/supabaseClient";
 export default function Todolist() {
   const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [is_Done, setIs_Done] = useState(false);
 
   function handleInputChange(event) {
@@ -37,12 +38,15 @@ export default function Todolist() {
 
   // eslint-disable-next-line no-unused-vars
   async function handleDone(taskId) {
-    //je pense que le probleme vient du fait que qu'il y'ai un seul etat is_Done pour tout les task ?!
-    //je veux pouvoir utlisiser le taskId si necessaire pur identifier le task avec is_done = true
-    //le probleme c'est que si j'appuie le bouton done et que is_Done devient true il l'est pour tout les task de la list tasks
-    //propose moi de solution a explorer pour pouvoir regler ce probleme , ne genere pas de code , je ferai moi meme
-    setIs_Done(true);
-    console(is_Done);
+      setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === taskId ? { ...task, is_Done: true } : task
+      ),
+      setIs_Done(!is_Done),
+      console.log(taskId,is_Done)
+      //j'ai toujours le meme probleme , le style en bas est generalise
+      
+    );
 
     // const { error } = await supabase
     //   .from("toDoList")
