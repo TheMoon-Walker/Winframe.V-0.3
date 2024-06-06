@@ -26,7 +26,11 @@ export default function Todolist() {
 
   async function handleDelete(taskId) {
     setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+    // setTasks((prevTasks)=> prevTasks.map((task)=> task - taskId))
+
+    //pourquoi l'orsque delete est supprime elle ne disparait pas physiquement de ma list
     console.log("task", taskId, "is deleted");
+    console.log(tasks)
 
     const { error } = await supabase.from("toDoList").delete().eq("id", taskId);
     //je pense les id seront different(celui sur spbs et et celui en local)
