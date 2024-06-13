@@ -23,29 +23,32 @@ export default function Todolist() {
   //     alert("Please enter a task!");
   //   }
   // }
-  
+
   async function handleButtonClick() {
     if (task) {
       const { data, error } = await supabase
         .from("toDoList")
-        .insert([{ task, is_Done: false }]);
+        .insert([{ task }]);
+        console.log(data)
       if (error) console.error(error);
       else setTasks([...tasks, data[0]]);
+      //??
       setTask("");
     } else {
       alert("Please enter a task!");
     }
   }
+  // async function handleButtonClick(){
+  //   if(task) {
+  //     let {data : tasks}
+  //   }
+  // }
 
   async function handleDelete(taskId) {
     setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
-
     console.log("task", taskId, "is deleted");
-    console.log(tasks)
-
+    console.log(tasks);
     const { error } = await supabase.from("toDoList").delete().eq("id", taskId);
-    //je pense les id seront different(celui sur spbs et et celui en local)
-
     if (error) {
       console.error(error);
     }
@@ -53,16 +56,15 @@ export default function Todolist() {
 
   // eslint-disable-next-line no-unused-vars
   async function handleDone(taskId) {
-      setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === taskId ? { ...task, is_Done: true } : task
-      ),
+    setTasks(
+      (prevTasks) =>
+        prevTasks.map((task) =>
+          task.id === taskId ? { ...task, is_Done: true } : task
+        ),
       setIs_Done(!is_Done),
-      console.log(taskId,is_Done)
+      console.log(taskId, is_Done)
       //j'ai toujours le meme probleme , le style en bas est generalise
-      
     );
-
   }
 
   return (
@@ -134,8 +136,6 @@ export default function Todolist() {
     </div>
   );
 }
-
-
 
 // import { useState, useEffect } from "react";
 // import supabase from "../config/supabaseClient";
