@@ -6,8 +6,13 @@ export default function Todolist() {
   // eslint-disable-next-line no-unused-vars
   const [is_Done, setIs_Done] = useState(false);
 
-  function handleInputChange(event) {
-    const value = event.target.value;
+  // function handleInputChange(event) {
+  //   const value = event.target.value;
+  //   setTask(value);
+  //   console.log(value);
+  // }
+  function handleInputChange({ target }) {
+    const { value } = target;
     setTask(value);
   }
 
@@ -29,7 +34,7 @@ export default function Todolist() {
       const { data, error } = await supabase
         .from("toDoList")
         .insert([{ task }]);
-        console.log(data)
+      console.log(data);
       if (error) console.error(error);
       else setTasks([...tasks, data[0]]);
       //??
@@ -38,6 +43,9 @@ export default function Todolist() {
       alert("Please enter a task!");
     }
   }
+  // insère une nouvelle tâche dans la table “toDoList” de Supabase si task n’est
+  //  pas vide. Elle met également à jour l’état tasks avec la nouvelle tâche.
+
   // async function handleButtonClick(){
   //   if(task) {
   //     let {data : tasks}
@@ -63,7 +71,7 @@ export default function Todolist() {
         ),
       setIs_Done(!is_Done),
       console.log(taskId, is_Done)
-      //j'ai toujours le meme probleme , le style en bas est generalise
+      //j'ai toujours le meme probleme , le style en bas est generalisé
     );
   }
 
