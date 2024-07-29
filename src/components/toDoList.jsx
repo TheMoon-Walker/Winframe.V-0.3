@@ -1,6 +1,5 @@
 import { useState } from "react";
-import supabase from "../supabaseClient.jsx";
-
+import supabase from "../config/supabaseClient.jsx";
 export default function Todolist() {
   const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
