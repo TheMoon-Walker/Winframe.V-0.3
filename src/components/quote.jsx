@@ -25,15 +25,10 @@ function Quote() {
   }, []);
 
 
-
-  // function getAuthor({author}){
-  //   const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(author)}`;
-  // }
-
   function handleSearchClick(){
     console.log(author)
-
- 
+ const   searchUrl =  `https://www.google.com/search?q=${encodeURIComponent(author)}`;
+   window.location.href = searchUrl;
   }
   
 
