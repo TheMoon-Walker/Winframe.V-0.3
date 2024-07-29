@@ -3,39 +3,43 @@ import supabase from "../config/supabaseClient.jsx";
 export default function Todolist() {
   const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
-  // const [doneTaskList, setDoneTaskList] = useState([]);
 
   function handleInputChange({ target }) {
     setTask(target.value);
   }
 
-async function handleAddTask(event) {
+
+
+
+  async function handleAddTask(event) {
     event.preventDefault();
     if (task.trim()) {
-      const newTask = { id: Date.now(), text: task, done: false };
+      const { data, error } = await supabase
+        .from("toDoList")
+        .insert([{ task }])
+        .select("*");
+      if (error) {
+        console.error("Error adding task:", error);
+        return;
+      }
+      const newTask = data[0]; 
+      console.log(data[0])
+      console.log(task)
+      console.log(tasks)
       setTasks([...tasks, newTask]);
-      console.log("Added Task:", newTask);
       setTask("");
-      const { data } = await supabase
-             .from("toDoList")
-             .insert([{ task }])
-             .select('*');
-             console.log('this is',data)
     } else {
       alert("Please enter a task!");
     }
-  
   }
 
   function handleDone(taskId) {
-    console.log("Task ID to be toggled:", taskId);
     setTasks(
       tasks.map((task) => {
         console.log("Current Task:", task);
         return task.id === taskId ? { ...task, done: !task.done } : task;
       })
     );
-    console.log(taskId, "and", task.id);
   }
 
   function handleDelete(taskId) {
@@ -84,7 +88,7 @@ async function handleAddTask(event) {
                 task.done ? "line-through" : ""
               }`}
             >
-              {task.text}
+                {task.task}    {/*y'a un probleme ici , text n'exite plus peut m'aider resoudre ce probleme  */}
             </span>
             <div className="flex gap-2">
               <button
@@ -106,5 +110,3 @@ async function handleAddTask(event) {
     </div>
   );
 }
-
-//now go learn sql pour synchroniser le tout et comprendre les commandes
