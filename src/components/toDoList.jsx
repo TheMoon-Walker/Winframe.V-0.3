@@ -8,9 +8,6 @@ export default function Todolist() {
     setTask(target.value);
   }
 
-
-
-
   async function handleAddTask(event) {
     event.preventDefault();
     if (task.trim()) {
@@ -22,10 +19,10 @@ export default function Todolist() {
         console.error("Error adding task:", error);
         return;
       }
-      const newTask = data[0]; 
-      console.log(data[0])
-      console.log(task)
-      console.log(tasks)
+      const newTask = data[0];
+      console.log(data[0]);
+      console.log(task);
+      console.log(tasks);
       setTasks([...tasks, newTask]);
       setTask("");
     } else {
@@ -42,9 +39,17 @@ export default function Todolist() {
     );
   }
 
-  function handleDelete(taskId) {
-    setTasks(tasks.filter((task) => task.id !== taskId));
-  }
+    async function handleDelete(taskId) {
+    // setTasks(tasks.filter((task) => task.id !== taskId));
+
+      await supabase.from("toDoList").delete().eq("id", taskId);
+      
+      setTasks(tasks.filter((task) => task.id !== taskId));
+      console.log('i am task .id',task.id)
+      console.log('i am taskId',taskId)
+    }
+    
+
 
   return (
     <div className="flex flex-col">
@@ -88,7 +93,7 @@ export default function Todolist() {
                 task.done ? "line-through" : ""
               }`}
             >
-                {task.task}    {/*y'a un probleme ici , text n'exite plus peut m'aider resoudre ce probleme  */}
+              {task.task}
             </span>
             <div className="flex gap-2">
               <button
