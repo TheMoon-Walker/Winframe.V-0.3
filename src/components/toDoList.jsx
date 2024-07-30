@@ -3,6 +3,7 @@ import supabase from "../config/supabaseClient.jsx";
 export default function Todolist() {
   const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
+  const [doneTasks,setDoneTasks] = useState([])
 
   function handleInputChange({ target }) {
     setTask(target.value);
@@ -13,7 +14,7 @@ export default function Todolist() {
     if (task.trim()) {
       const { data, error } = await supabase
         .from("toDoList")
-        .insert([{ task_content : task }])  //ici ca insert quoi au juste et commnet la base de donnee sait dans quelle colonne l'inserer ?
+        .insert([{ task_content: task }])
         .select("*");
       if (error) {
         console.error("Error adding task:", error);
@@ -31,47 +32,28 @@ export default function Todolist() {
   }
 
   function handleDone(taskId) {
-    setTasks(
-      tasks.map((task) => {
-        console.log("Current Task:", task);
-        return task.id === taskId ? { ...task, done: !task.done } : task;
-      })
-    );
+    setTasks(tasks.filter((task) => task.id !== taskId));
+
   }
 
-    // async function handleDelete(taskId) {
+  async function handleDelete(taskId) {
+    try {
+      // Supprime la tâche de la base de données Supabase
+      const { error } = await supabase
+        .from("toDoList")
+        .delete()
+        .eq("id", taskId);
 
-    //   await supabase.from("toDoList").delete().eq("id", taskId);
-    //   setTasks(tasks.filter((task) => task.id !== taskId));
-    //   console.log('i am task .id',task.id)
-    //   console.log('i am taskId',taskId)
-    // }
-    
-
-
-    async function handleDelete(taskId) {
-      try {
-        // Supprime la tâche de la base de données Supabase
-        const { error } = await supabase
-          .from("toDoList")
-          .delete()
-          .eq("id", taskId);
-    
-        if (error) {
-          console.error("Error deleting task:", error);
-          return;
-        }
-    
-        // Met à jour l'état local en filtrant la tâche supprimée
-        setTasks(tasks.filter((task) => task.id !== taskId));
-      } catch (error) {
-        console.error("Unexpected error deleting task:", error);
+      if (error) {
+        console.error("Error deleting task:", error);
+        return;
       }
-    }
-    
-//new chalenge : savoir pour quoi il y 'a autant de latence 
-//maintenant que le probleme des Rls est resolu , je peut juste recuperer tout les anciennes taches fait trier par date dans une nouvelle page accessible avec react rooter (la deuxieme page de mon site)
 
+      setTasks(tasks.filter((task) => task.id !== taskId));
+    } catch (error) {
+      console.error("Unexpected error deleting task:", error);
+    }
+  }
 
   return (
     <div className="flex flex-col">
@@ -137,3 +119,6 @@ export default function Todolist() {
     </div>
   );
 }
+
+//new chalenge : savoir pour quoi il y 'a autant de latence
+//maintenant que le probleme des Rls est resolu , je peut juste recuperer tout les anciennes taches fait trier par date dans une nouvelle page accessible avec react rooter (la deuxieme page de mon site)
