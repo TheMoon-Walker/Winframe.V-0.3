@@ -70,8 +70,7 @@ export default function Todolist() {
     }
     
 //new chalenge : savoir pour quoi il y 'a autant de latence 
-//supprimer les taches de la base de donnee avec la fonction handleDelete
-
+//maintenant que le probleme des Rls est resolu , je peut juste recuperer tout les anciennes taches fait trier par date dans une nouvelle page accessible avec react rooter (la deuxieme page de mon site)
 
 
   return (
