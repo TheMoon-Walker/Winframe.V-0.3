@@ -13,7 +13,7 @@ export default function Todolist() {
     if (task.trim()) {
       const { data, error } = await supabase
         .from("toDoList")
-        .insert([{ task }])
+        .insert([{ task_content : task }])  //ici ca insert quoi au juste et commnet la base de donnee sait dans quelle colonne l'inserer ?
         .select("*");
       if (error) {
         console.error("Error adding task:", error);
@@ -39,16 +39,39 @@ export default function Todolist() {
     );
   }
 
-    async function handleDelete(taskId) {
-    // setTasks(tasks.filter((task) => task.id !== taskId));
+    // async function handleDelete(taskId) {
 
-      await supabase.from("toDoList").delete().eq("id", taskId);
-      
-      setTasks(tasks.filter((task) => task.id !== taskId));
-      console.log('i am task .id',task.id)
-      console.log('i am taskId',taskId)
+    //   await supabase.from("toDoList").delete().eq("id", taskId);
+    //   setTasks(tasks.filter((task) => task.id !== taskId));
+    //   console.log('i am task .id',task.id)
+    //   console.log('i am taskId',taskId)
+    // }
+    
+
+
+    async function handleDelete(taskId) {
+      try {
+        // Supprime la tâche de la base de données Supabase
+        const { error } = await supabase
+          .from("toDoList")
+          .delete()
+          .eq("id", taskId);
+    
+        if (error) {
+          console.error("Error deleting task:", error);
+          return;
+        }
+    
+        // Met à jour l'état local en filtrant la tâche supprimée
+        setTasks(tasks.filter((task) => task.id !== taskId));
+      } catch (error) {
+        console.error("Unexpected error deleting task:", error);
+      }
     }
     
+//new chalenge : savoir pour quoi il y 'a autant de latence 
+//supprimer les taches de la base de donnee avec la fonction handleDelete
+
 
 
   return (
@@ -93,7 +116,7 @@ export default function Todolist() {
                 task.done ? "line-through" : ""
               }`}
             >
-              {task.task}
+              {task.task_content}
             </span>
             <div className="flex gap-2">
               <button
