@@ -3,7 +3,7 @@ import supabase from "../config/supabaseClient.jsx";
 export default function Todolist() {
   const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
-  const [doneTasks,setDoneTasks] = useState([])
+  const [doneTasks, setDoneTasks] = useState([]);
 
   function handleInputChange({ target }) {
     setTask(target.value);
@@ -31,9 +31,23 @@ export default function Todolist() {
     }
   }
 
-  function handleDone(taskId) {
+  async function handleDone(taskId) {
+    let isDone = true;
     setTasks(tasks.filter((task) => task.id !== taskId));
+    try {
+      const { error } = await supabase
 
+        .from("toDoList")
+        .update([{ is_done: isDone }])
+        .eq("id", taskId);
+
+      if (error) {
+        console.error("Error deleting task:", error);
+        return;
+      }
+    } catch (error) {
+      console.error("Unexpected error deleting task:", error);
+    }
   }
 
   async function handleDelete(taskId) {
