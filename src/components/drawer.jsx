@@ -22,7 +22,7 @@ function Drawer() {
         </li>
         <li>
           <button
-            onClick={() => handleClick('/vitrine')}
+            onClick={() => handleClick('/Vitrine')}
             className="block w-full p-3 bg-cyan-600 text-white rounded-lg text-center font-semibold hover:bg-cyan-700 transition duration-300"
           >
             Vitrine

@@ -14,7 +14,3 @@ export default function HomePage() {
     </div>
   );
 }
-
-
-//switcher entre les pages tout en gardant le drawer intact (switcher entre les composant c'est a dire remplacer un par un autre)
-//creer une page qui affiches les taches achever , date de creation mettre une option en haut qui permet de les filtrer par dates (semamines, mois, jour)
