@@ -25,10 +25,9 @@ function Drawer() {
             onClick={() => handleClick('/vitrine')}
             className="block w-full p-3 bg-cyan-600 text-white rounded-lg text-center font-semibold hover:bg-cyan-700 transition duration-300"
           >
-            Vitrine
+            Done Tasks
           </button>
         </li>
-        {/* Ajoute d'autres options ici */}
       </ul>
     </div>
   );

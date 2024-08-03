@@ -8,7 +8,7 @@ export default function Root() {
         <Drawer />
 
         <div className=" w-screen flex-col ">
-          <Outlet />
+          <Outlet />   {/* contiendra les elements Children[] */}
           <Footer />
         </div>
       </div>

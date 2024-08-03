@@ -1,11 +1,10 @@
+export default function Vitrine() {
+  return (
+    <div className=" flex flex-col h-screen  bg-sky-900">
+      <div className=" bg-red-400 h-1/2"> Taches a faire</div>
+      <div className=" bg-green-600 h-1/2">Taches Faites</div>
 
-
-export default function Vitrine(){
-    return(
-        <div className=" min-h-screen bg-black">
-
-
-           <p className=" text-white"> hello i am the black page</p>
-        </div>
-    )
+      <div></div>
+    </div>
+  );
 }
