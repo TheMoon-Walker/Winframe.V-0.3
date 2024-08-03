@@ -3,11 +3,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import HomePage from "./components/homePage.jsx";
-import ErrorPage from "./components/errorPage.jsx";
-// import Vitrine from "./components/vitrine.jsx";
+import ErrorPage from "./pages/errorPage.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Root from "./components/root.jsx";
+import Root from "./pages/root.jsx";
 import Vitrine from "./components/vitrine.jsx";
 const router = createBrowserRouter([
   {
