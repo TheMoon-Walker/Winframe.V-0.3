@@ -14,7 +14,7 @@ function Drawer() {
       <ul className="space-y-4">
         <li>
           <button
-            onClick={() => handleClick('/')}
+            onClick={() => handleClick('/homepage')}
             className="block w-full p-3 bg-sky-600 text-white rounded-lg text-center font-semibold hover:bg-sky-700 transition duration-300"
           >
             Home

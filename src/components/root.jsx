@@ -4,13 +4,15 @@ import { Outlet } from "react-router-dom";
 export default function Root() {
   return (
     <>
-      <div className="" >
+      <div className="flex h-screen" >
         <Drawer />
 
-        <div className=" flex-1">
+        <div className=" w-screen flex-col ">
           <Outlet />
+<Footer />
         </div>
-        <Footer />
+
+        
       </div>
     </>
   );
