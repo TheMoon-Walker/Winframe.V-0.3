@@ -25,7 +25,6 @@ function Quote() {
   }, []);
 
   function handleSearchClick() {
-    console.log(author);
     const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(
       author
     )}`;

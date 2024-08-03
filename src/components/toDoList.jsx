@@ -3,7 +3,7 @@ import supabase from "../config/supabaseClient.jsx";
 export default function Todolist() {
   const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
-  const [doneTasks, setDoneTasks] = useState([]);
+  // const [doneTasks, setDoneTasks] = useState([]);
 
   function handleInputChange({ target }) {
     setTask(target.value);
