@@ -2,12 +2,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App.jsx";
+import HomePage from "./components/homePage.jsx";
+import Vitrine from "./components/vitrine.jsx";
 import { createBrowserRouter,RouterProvider } from "react-router-dom";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
+    element: <HomePage/>,
   },
 ]);
 import "./index.css";
