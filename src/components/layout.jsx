@@ -1,6 +1,5 @@
-import Drawer from './Drawer';
-import Footer from './Footer';
-
+import Drawer from './drawer';
+import Footer from './footer';
 // eslint-disable-next-line react/prop-types
 export default function Layout({ children }) {
   return (
