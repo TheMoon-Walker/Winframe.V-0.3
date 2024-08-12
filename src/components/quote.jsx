@@ -9,7 +9,7 @@ function Quote() {
       try {
         const response = await fetch("./quote.json");
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          throw new Error("response was not ok");
         }
         const json = await response.json();
         const rnd = Math.floor(Math.random() * json.length);
