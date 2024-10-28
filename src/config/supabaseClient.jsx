@@ -10,5 +10,3 @@ if (!supabaseUrl || !supabaseKey) {
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default supabase;
-
-// is ignored ?
